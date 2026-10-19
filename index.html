@@ -10,13 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #d4af37;
-            --primary-light: #f3e5ab;
-            --bg-dark: #0a0e17;
+            --primary: #ffd700;
+            --primary-light: #fff5cc;
             --text-light: #ffffff;
-            /* خلفية كروت شبه شفافة تتيح رؤية الفيديو بوضوح تام */
-            --glass: rgba(10, 14, 23, 0.45);
-            --border-gold: rgba(212, 175, 55, 0.6);
+            --border-gold: rgba(255, 215, 0, 0.5);
         }
 
         * {
@@ -27,12 +24,12 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: #000;
             color: var(--text-light);
             overflow-x: hidden;
         }
 
-        /* Video Background Frame - إضاءة عالية ووضوح كامل للفيديو */
+        /* Video Background - فيديو صافي وواضح 100% بدون أي فلاتر تشويش أو تغبيش */
         .video-container {
             position: fixed;
             top: 0;
@@ -47,192 +44,158 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.85) contrast(1.1);
+            filter: brightness(1) contrast(1.05);
         }
 
+        /* طبقة عتمة خفيفة جداً تمنح قراءة النصوص وتبهت بعيداً عن الفيديو الأساسي */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(10, 14, 23, 0.15);
+            background: rgba(0, 0, 0, 0.2);
             z-index: -1;
         }
 
         .main-wrapper {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 30px 15px;
         }
 
-        /* Hero Card */
-        .hero-card {
-            background: var(--glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        /* بطاقات شفافة بالكامل ومحاطة بإطار ذهبي أنيق لتظهر تفاصيل الفيديو من خلفها */
+        .card-clear {
+            background: rgba(0, 0, 0, 0.25);
             border: 1px solid var(--border-gold);
-            border-radius: 24px;
-            padding: 40px 20px;
+            border-radius: 20px;
+            padding: 35px 20px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             margin-bottom: 25px;
-            position: relative;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
         }
 
         .quran-verse {
             font-family: 'Amiri', serif;
             color: var(--primary-light);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 25px;
             line-height: 1.8;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* Royal Crest Monogram */
+        /* Monogram */
         .monogram-frame {
-            position: relative;
-            width: 110px;
-            height: 110px;
+            width: 90px;
+            height: 90px;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed var(--primary-light);
+            border: 2px solid var(--primary);
             border-radius: 50%;
-            padding: 5px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            background: rgba(10, 14, 23, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
         .monogram-inner {
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-family: 'Amiri', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary-light);
-            background: rgba(10, 14, 23, 0.6);
         }
 
         .monogram-inner span {
-            font-size: 1.1rem;
-            margin: 0 4px;
-            color: #ff6b81;
+            color: #ff4d6d;
+            margin: 0 3px;
         }
 
-        /* Couples & Families */
         .family-title {
-            font-size: 0.95rem;
-            color: #f3f4f6;
-            margin-top: 15px;
-            font-weight: 400;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            margin-top: 10px;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         .couple-name {
             font-family: 'Amiri', serif;
-            font-size: 2.8rem;
-            color: var(--primary-light);
+            font-size: 2.7rem;
+            color: var(--primary);
             font-weight: 700;
-            margin: 5px 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            margin: 2px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.95);
         }
 
         .and-sym {
             font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin: 10px 0;
+            font-size: 1.6rem;
+            color: var(--primary-light);
+            margin: 5px 0;
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         .invitation-text {
-            font-size: 1.1rem;
-            color: #ffffff;
-            margin: 25px 0 15px;
+            font-size: 1.05rem;
+            color: #fff;
+            margin: 20px 0 15px;
             line-height: 1.6;
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         /* Countdown */
         .countdown-title {
-            font-size: 0.9rem;
-            color: var(--primary-light);
-            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-top: 20px;
             letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .time-box {
-            background: rgba(10, 14, 23, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 12px;
-            padding: 10px 5px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 8px 5px;
         }
 
         .time-box .num {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         .time-box .label {
-            font-size: 0.7rem;
-            color: #e5e7eb;
+            font-size: 0.65rem;
+            color: #cbd5e1;
         }
 
-        /* Event Details Card */
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--border-gold);
-            border-radius: 24px;
-            padding: 30px 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-
+        /* Card Title */
         .card-title {
             font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: var(--primary-light);
+            font-size: 1.7rem;
+            color: var(--primary);
             text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
-        }
-
-        .card-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: var(--primary);
-            margin: 8px auto 0;
-            border-radius: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
         }
 
         .venue-info {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .venue-name {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 5px;
@@ -241,46 +204,45 @@
 
         .venue-date {
             color: var(--primary-light);
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         /* Timeline */
         .timeline {
             position: relative;
-            padding-right: 20px;
-            margin: 20px 0;
+            padding-right: 15px;
+            margin: 15px 0;
             border-right: 2px solid var(--border-gold);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 20px;
-            padding-right: 15px;
+            margin-bottom: 15px;
+            padding-right: 12px;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            right: -26px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
+            right: -21px;
+            top: 4px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
+            box-shadow: 0 0 8px var(--primary);
         }
 
         .timeline-time {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--primary-light);
             font-weight: 600;
             text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
 
         .timeline-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #ffffff;
             text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
@@ -292,50 +254,47 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
-            color: #fff;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+            color: #000;
             text-decoration: none;
             border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
             margin-top: 10px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+            transform: scale(1.02);
         }
 
         /* Form Inputs */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-align: right;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.9rem;
-            color: #f3f4f6;
-            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: #f1f5f9;
+            margin-bottom: 5px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(10, 14, 23, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            border-radius: 10px;
+            padding: 10px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 8px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
@@ -343,22 +302,22 @@
         }
 
         select.form-control option {
-            background-color: #0a0e17;
+            background-color: #000;
             color: #fff;
         }
 
         .footer {
             text-align: center;
-            padding: 20px 0;
-            font-size: 0.85rem;
-            color: #f3f4f6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+            padding: 15px 0;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
     </style>
 </head>
 <body>
 
-    <!-- Local Video Background -->
+    <!-- فيديو الخلفية بدون أي تغبيش أو ضبابية -->
     <div class="video-container">
         <video id="bgVideo" autoplay loop muted playsinline preload="auto">
             <source src="download.mp4" type="video/mp4">
@@ -368,13 +327,12 @@
     <div class="overlay"></div>
 
     <div class="main-wrapper">
-        <!-- Hero Section -->
-        <div class="hero-card">
+        <!-- Hero Card -->
+        <div class="card-clear">
             <div class="quran-verse">
                 "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
             </div>
 
-            <!-- Monogram Frame -->
             <div class="monogram-frame">
                 <div class="monogram-inner">
                     أ <span>❤️</span> ح
@@ -402,8 +360,8 @@
             </div>
         </div>
 
-        <!-- Event Details Section -->
-        <div class="card">
+        <!-- Event Details Card -->
+        <div class="card-clear">
             <h2 class="card-title">تفاصيل الحفل</h2>
             
             <div class="venue-info">
@@ -436,7 +394,7 @@
         </div>
 
         <!-- RSVP Section -->
-        <div class="card">
+        <div class="card-clear">
             <h2 class="card-title">تأكيد الحضور</h2>
             <form id="rsvpForm" onsubmit="handleRSVP(event)">
                 <div class="form-group">
@@ -464,7 +422,7 @@
                 </div>
                 <button type="submit" class="btn">إرسال التأكيد</button>
             </form>
-            <div id="rsvpSuccess" style="display:none; text-align:center; padding: 20px; color: var(--primary-light);">
+            <div id="rsvpSuccess" style="display:none; text-align:center; padding: 20px; color: var(--primary-light); font-weight: bold;">
                 ✨ تم استلام تأكيدكم بنجاح! ننتظركم بشوق.
             </div>
         </div>
