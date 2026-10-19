@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف أحمد & حنان</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5a059;
+            --primary-light: #e5c178;
+            --bg-dark: #0a0e17;
+            --text-light: #f8f9fa;
+            --glass: rgba(15, 23, 42, 0.75);
+            --border-gold: rgba(197, 160, 89, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Video Background Frame */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(10,14,23,0.3) 0%, rgba(10,14,23,0.85) 100%);
+            z-index: -1;
+        }
+
+        .main-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .quran-verse {
+            font-family: 'Amiri', serif;
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Royal Crest Monogram */
+        .monogram-frame {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--primary-light);
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+            background: rgba(10, 14, 23, 0.4);
+        }
+
+        .monogram-inner {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .monogram-inner span {
+            font-size: 1.1rem;
+            margin: 0 4px;
+            color: #e5c178;
+        }
+
+        /* Couples & Families */
+        .family-title {
+            font-size: 0.95rem;
+            color: #d1d5db;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        .couple-name {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: var(--primary-light);
+            font-weight: 700;
+            margin: 5px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .and-sym {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .invitation-text {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            margin: 25px 0 15px;
+            line-height: 1.6;
+        }
+
+        /* Countdown */
+        .countdown-title {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-top: 25px;
+            letter-spacing: 1px;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .time-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 12px;
+            padding: 10px 5px;
+        }
+
+        .time-box .num {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .time-box .label {
+            font-size: 0.7rem;
+            color: #9ca3af;
+        }
+
+        /* Event Details Card */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .card-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .venue-info {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .venue-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .venue-date {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 20px;
+            margin: 20px 0;
+            border-right: 2px solid var(--border-gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-right: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-time {
+            font-size: 0.85rem;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: #f3f4f6;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #c5a059 0%, #a37f3e 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: #d1d5db;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        select.form-control option {
+            background-color: #0a0e17;
+            color: #fff;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Background (تم ربط الفيديو الخاص بك هنا) -->
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="http://googleusercontent.com/generated_video_content/13077618913179527278" type="video/mp4">
+            متصفحك لا يدعم عرض الفيديو.
+        </video>
+    </div>
+    <div class="overlay"></div>
+
+    <div class="main-wrapper">
+        <!-- Hero Section -->
+        <div class="hero-card">
+            <div class="quran-verse">
+                "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+            </div>
+
+            <!-- Monogram Frame -->
+            <div class="monogram-frame">
+                <div class="monogram-inner">
+                    أ <span>❤️</span> ح
+                </div>
+            </div>
+
+            <div class="family-title">عائلة السيد محمد إبراهيم وحرمه أماني</div>
+            <div class="couple-name">أحمد</div>
+
+            <div class="and-sym">&</div>
+
+            <div class="family-title">عائلة طارق عبد الجواد وحرمه دينا نور الدين</div>
+            <div class="couple-name">حنان</div>
+
+            <p class="invitation-text">
+                يتشرفون بدمج الفرحة ودعوتكم لحضور حفل الزفاف السعيد
+            </p>
+
+            <div class="countdown-title">المتبقي على اليوم الموعود</div>
+            <div class="countdown-grid" id="countdown">
+                <div class="time-box"><div class="num" id="days">0</div><div class="label">يوم</div></div>
+                <div class="time-box"><div class="num" id="hours">0</div><div class="label">ساعة</div></div>
+                <div class="time-box"><div class="num" id="minutes">0</div><div class="label">دقيقة</div></div>
+                <div class="time-box"><div class="num" id="seconds">0</div><div class="label">ثانية</div></div>
+            </div>
+        </div>
+
+        <!-- Event Details Section -->
+        <div class="card">
+            <h2 class="card-title">تفاصيل الحفل</h2>
+            
+            <div class="venue-info">
+                <div class="venue-name">قاعة توباز - منتجع عين الحياة</div>
+                <div class="venue-date">الخميس، 10 ديسمبر 2026 | 8:00 مساءً</div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">7:00 مساءً</div>
+                    <div class="timeline-text">التجمع</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00 مساءً</div>
+                    <div class="timeline-text">دخول العرسان</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:30 مساءً</div>
+                    <div class="timeline-text">كتب الكتاب</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">9:00 - 12:00 مساءً</div>
+                    <div class="timeline-text">الاحتفال</div>
+                </div>
+            </div>
+
+            <a href="https://maps.app.goo.gl/Tqr8P7eW4aBcnPhq6?g_st=aw" target="_blank" class="btn">
+                📍 عرض موقع القاعة على الخريطة
+            </a>
+        </div>
+
+        <!-- RSVP Section -->
+        <div class="card">
+            <h2 class="card-title">تأكيد الحضور</h2>
+            <form id="rsvpForm" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <label for="guestName">الاسم الكريم</label>
+                    <input type="text" id="guestName" class="form-control" placeholder="أدخل اسمك بالكامل" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendance">هل ستشرفنا بالحضور؟</label>
+                    <select id="attendance" class="form-control" required>
+                        <option value="يشرفني الحضور">يشرفني الحضور بكل سرور</option>
+                        <option value="أعتذر عن الحضور">أعتذر لظروف طارئة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guestCount">عدد الأفراد المرافقين</label>
+                    <select id="guestCount" class="form-control">
+                        <option value="1">فرد واحد</option>
+                        <option value="2">فردان</option>
+                        <option value="3+">أكثر من فردين</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">تهنئة للعرسان (اختياري)</label>
+                    <textarea id="message" class="form-control" rows="3" placeholder="اكتب كلمة طيبة لأحمد وحنان..."></textarea>
+                </div>
+                <button type="submit" class="btn">إرسال التأكيد</button>
+            </form>
+            <div id="rsvpSuccess" style="display:none; text-align:center; padding: 20px; color: var(--primary-light);">
+                ✨ تم استلام تأكيدكم بنجاح! ننتظركم بشوق.
+            </div>
+        </div>
+
+        <div class="footer">
+            أحمد & حنان | 2026
+        </div>
+    </div>
+
+    <script>
+        // Target Date: Dec 10, 2026 20:00:00
+        const weddingDate = new Date("December 10, 2026 20:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div style='grid-column:1/-1; color:var(--primary-light);'>نحن نحتفل الآن! 🎉</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function handleRSVP(e) {
+            e.preventDefault();
+            document.getElementById("rsvpForm").style.display = "none";
+            document.getElementById("rsvpSuccess").style.display = "block";
+        }
+    </script>
+</body>
+</html>
