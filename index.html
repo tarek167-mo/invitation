@@ -339,23 +339,21 @@
                 </div>
             </div>
 
-           
-                <p class="invitation-text">
-                    بمزيد من الفرح و السرور , ندعوكم لحضور حفل زفاف :
-                    <div class="family-title">عائلة السيد محمد إبراهيم وحرمه أماني</div>
-                    و
-                    <div class="family-title">عائلة السد طارق عبد الجواد وحرمه دينا نور الدين</div>
-                    على نجليهما الغاليين:
-                </p>
+            <p class="invitation-text">
+                بمزيد من الفرح و السرور , ندعوكم لحضور حفل زفاف :
+            </p>
+            <div class="family-title">عائلة السيد محمد إبراهيم وحرمه أماني</div>
+            <div style="margin: 5px 0; color: var(--primary-light);">و</div>
+            <div class="family-title">عائلة السيد طارق عبد الجواد وحرمه دينا نور الدين</div>
+            <p class="invitation-text" style="margin-top: 10px;">
+                على نجليهما الغاليين:
+            </p>
             
-            <div class="couple-name">العريس 
-                أحمد</div>
+            <div class="couple-name">أحمد</div>
 
             <div class="and-sym">&</div>
 
-           
-            <div class="couple-name">العروسة 
-                حنان</div>
+            <div class="couple-name">حنان</div>
 
             <div class="countdown-title">المتبقي على اليوم الموعود</div>
             <div class="countdown-grid" id="countdown">
@@ -426,7 +424,7 @@
                     <label for="message">تهنئة للعرسان (اختياري)</label>
                     <textarea id="message" class="form-control" rows="3" placeholder="اكتب كلمة طيبة لأحمد وحنان..."></textarea>
                 </div>
-                <button type="submit" class="btn">إرسال التأكيد</button>
+                <button type="submit" id="submitBtn" class="btn">إرسال التأكيد</button>
             </form>
             <div id="rsvpSuccess" style="display:none; text-align:center; padding: 20px; color: var(--primary-light); font-weight: bold;">
                 ✨ تم استلام تأكيدكم بنجاح! ننتظركم بشوق.
@@ -474,10 +472,32 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // ⚠️ استبدل الرابط أدناه برابط الـ Web App الخاص بـ Google Apps Script الذي قمت بإنشائه
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxJJ_d3JHVDFC10NUlm1Wg6VxkDcEgdsPpUrWtdnr4Pk-pi9BBQPuI4zgdGn2HKtyF2/exec';
+
         function handleRSVP(e) {
             e.preventDefault();
-            document.getElementById("rsvpForm").style.display = "none";
-            document.getElementById("rsvpSuccess").style.display = "block";
+            const btn = document.getElementById("submitBtn");
+            btn.innerText = "جاري الإرسال...";
+            btn.disabled = true;
+
+            const formData = new URLSearchParams({
+                guestName: document.getElementById("guestName").value,
+                attendance: document.getElementById("attendance").value,
+                guestCount: document.getElementById("guestCount").value,
+                message: document.getElementById("message").value
+            });
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    document.getElementById("rsvpForm").style.display = "none";
+                    document.getElementById("rsvpSuccess").style.display = "block";
+                })
+                .catch(error => {
+                    alert("حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.");
+                    btn.innerText = "إرسال التأكيد";
+                    btn.disabled = false;
+                });
         }
     </script>
 </body>
